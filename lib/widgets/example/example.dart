@@ -85,6 +85,6 @@ class _PostsRowWidget extends StatelessWidget {
         Text(post.body),
         const SizedBox(height: 40),
       ],
-    ); // Column
+    );
   }
 }

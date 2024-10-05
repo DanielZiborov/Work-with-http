@@ -57,10 +57,34 @@ class _CreateButton extends StatelessWidget {
 }
 
 class _PostsWidget extends StatelessWidget {
-  const _PostsWidget({super.key});
-
+  const _PostsWidget();
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return ListView.builder(
+      itemCount: ExampleModelProvider.watch(context)?.model.posts.length ?? 0,
+      itemBuilder: (BuildContext context, int index) {
+        return _PostsRowWidget(index: index);
+      },
+    );
+  }
+}
+
+class _PostsRowWidget extends StatelessWidget {
+  final int index;
+  const _PostsRowWidget({required this.index});
+  @override
+  Widget build(BuildContext context) {
+    final post = ExampleModelProvider.read(context)!.model.posts[index];
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(post.id.toString()),
+        const SizedBox(height: 10),
+        Text(post.title),
+        const SizedBox(height: 10),
+        Text(post.body),
+        const SizedBox(height: 40),
+      ],
+    ); // Column
   }
 }

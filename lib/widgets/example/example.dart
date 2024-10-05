@@ -57,7 +57,7 @@ class _CreateButton extends StatelessWidget {
 }
 
 class _PostsWidget extends StatelessWidget {
-  const _PostsWidget();
+  const _PostsWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

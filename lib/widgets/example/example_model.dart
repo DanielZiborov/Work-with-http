@@ -4,6 +4,9 @@ import 'package:work_with_http/domain/entity/post.dart';
 class ExampleWidgetModel extends ChangeNotifier {
   final _posts = <Post>[];
   List<Post> get posts => _posts;
+
+  void reloadPosts(){}
+  void createPosts(){}
 }
 
 class ExampleModelProvider extends InheritedNotifier {
@@ -22,6 +25,8 @@ class ExampleModelProvider extends InheritedNotifier {
     final widget = context.getElementForInheritedWidgetOfExactType()?.widget;
     return widget is ExampleModelProvider ? widget : null;
   }
+
+
 }
 
 

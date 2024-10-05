@@ -18,13 +18,12 @@ class _ExampleState extends State<Example> {
           model: model,
           child: const Column(
             children: [
-              const ReloadButton(),
-              const CreateButton(),
+              _ReloadButton(),
+              _CreateButton(),
               Expanded(
                 child: const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
-                  // child: _PostsWidget(),
-                  child:Placeholder(),
+                  child: _PostsWidget(),
                 ),
               ),
             ],
@@ -35,17 +34,30 @@ class _ExampleState extends State<Example> {
   }
 }
 
-class ReloadButton extends StatelessWidget {
-  const ReloadButton({super.key});
-
+class _ReloadButton extends StatelessWidget {
+  const _ReloadButton();
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return ElevatedButton(
+      onPressed: () => ExampleModelProvider.read(context)?.model.reloadPosts(),
+      child: const Text('Обновить посты'),
+    );
   }
 }
 
-class CreateButton extends StatelessWidget {
-  const CreateButton({super.key});
+class _CreateButton extends StatelessWidget {
+  const _CreateButton();
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () => ExampleModelProvider.read(context)?.model.createPosts(),
+      child: const Text('Создать пост'),
+    );
+  }
+}
+
+class _PostsWidget extends StatelessWidget {
+  const _PostsWidget();
 
   @override
   Widget build(BuildContext context) {

@@ -23,3 +23,5 @@ class ExampleModelProvider extends InheritedNotifier {
     return widget is ExampleModelProvider ? widget : null;
   }
 }
+
+

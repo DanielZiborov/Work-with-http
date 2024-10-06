@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:work_with_http/domain/api_clients/api_client.dart';
 import 'package:work_with_http/widgets/example/example_model.dart';
 
 class Example extends StatefulWidget {
@@ -21,7 +20,7 @@ class _ExampleState extends State<Example> {
               _ReloadButton(),
               _CreateButton(),
               Expanded(
-                child: const Padding(
+                child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: _PostsWidget(),
                 ),
@@ -39,7 +38,7 @@ class _ReloadButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () => ExampleModelProvider.read(context)?.model.reloadPosts(),
+      onPressed: () => ExampleModelProvider.watch(context)?.model.reloadPosts(),
       child: const Text('Обновить посты'),
     );
   }

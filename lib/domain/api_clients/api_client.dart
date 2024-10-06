@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:work_with_http/domain/entity/post.dart';
 
 class ApiClient {

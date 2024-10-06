@@ -38,7 +38,7 @@ class _ReloadButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () => ExampleModelProvider.watch(context)?.model.reloadPosts(),
+      onPressed: () => ExampleModelProvider.read(context)?.model.reloadPosts(),
       child: const Text('Обновить посты'),
     );
   }

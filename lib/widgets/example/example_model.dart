@@ -28,7 +28,7 @@ class ExampleModelProvider extends InheritedNotifier {
   }
 
   static ExampleModelProvider? read(BuildContext context) {
-    final widget = context.getElementForInheritedWidgetOfExactType()?.widget;
+    final widget = context.getElementForInheritedWidgetOfExactType<ExampleModelProvider>()?.widget;
     return widget is ExampleModelProvider ? widget : null;
   }
 

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:work_with_http/domain/entity/post.dart';
+import 'package:path/path.dart';
 
 class ApiClient {
   final client = HttpClient();
@@ -44,9 +45,29 @@ class ApiClient {
     final jsonStrings = await response.transform(utf8.decoder).toList();
     final jsonString = jsonStrings.join();
 
-    final json = jsonDecode(jsonString) as Map<String,dynamic>;
+    final json = jsonDecode(jsonString) as Map<String, dynamic>;
     final post = Post.fromJson(json);
     return post;
+  }
+
+  Future<void> fileUpload(File file) async {
+    final url = Uri.parse("https://example.com");
+
+    final request = await client.postUrl(url);
+
+    request.headers.set(HttpHeaders.contentTypeHeader, ContentType.binary);
+    request.headers.add('filename', basename(file.path));
+    request.contentLength = file.lengthSync();
+    final FileStream = file.openRead();
+    await request.addStream(FileStream);
+
+    final httpResponse = await request.close();
+
+    if (httpResponse.statusCode != 200) {
+      throw Exception('ERROR UPLOADING FILE');
+    } else {
+      return;
+    }
   }
 }
 
